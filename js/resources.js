@@ -2,7 +2,7 @@ game.resources = [
 
 
 	 {name: "backgeound-tiles", type:"image", src: "data/img/background-tiles.png"},
-	 {name: "meta-tiles", "type:"image", src: "data/img/meta-tiles.png}
+	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
    
     /*added the images to the code
     */ 
