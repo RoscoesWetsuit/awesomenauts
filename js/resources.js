@@ -3,6 +3,7 @@ game.resources = [
 
 	 {name: "backgeound-tiles", type:"image", src: "data/img/background-tiles.png"},
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
+	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
    
     /*added the images to the code
     */ 
