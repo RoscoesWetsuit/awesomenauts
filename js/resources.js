@@ -1,7 +1,7 @@
 game.resources = [
 
 
-	 {name: "backgeound-tiles", type:"image", src: "data/img/background-tiles.png"},
+	 {name: "background-tiles", type:"image", src: "data/img/background-tiles.png"},
 	 {name: "meta-tiles", type:"image", src: "data/img/meta-tiles.png"},
 	 {name: "player", type:"image", src: "data/img/orcSpear.png"},
    
@@ -19,7 +19,7 @@ game.resources = [
 	 * {name: "example01", type: "tmx", src: "data/map/example01.json"},
  	 */
 
- 	 {name: "map001", type:"tmx", src: "data/map/map001.tmx"}
+ 	 {name: "level01", type:"tmx", src: "data/map/test2.tmx"}
  	 /*loaded the map
  	 */
 	/* Background music. 

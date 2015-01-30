@@ -39,7 +39,7 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 
 	// Run on game resources loaded.
 	"loaded" : function () {
-		me.pool.reister("player", game.PlayerEntity, true);
+		me.pool.register("player", game.PlayerEntity, true);
 		//added the player to the pool of objects we use, so the game
 		//can recognize the player
 		//we added the true, and what that does is it says any object
