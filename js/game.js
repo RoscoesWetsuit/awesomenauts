@@ -50,4 +50,8 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		// Start the game.
 		me.state.change(me.state.PLAY);
 	}
+<<<<<<< HEAD
 };
+=======
+};
+>>>>>>> 582bede42ca83d0f6c1a6887dff2d667812d28f7

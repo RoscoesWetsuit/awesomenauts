@@ -1,3 +1,8 @@
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 582bede42ca83d0f6c1a6887dff2d667812d28f7
 game.PlayerEntity = me.Entity.extend({
 	init:function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
@@ -50,6 +55,7 @@ game.PlayerEntity = me.Entity.extend({
 	}
 
 });
+<<<<<<< HEAD
 
 game.PlayerBaseEntity = me.Entity.extend({
 	init:function(x, y, settings) {
@@ -118,3 +124,5 @@ game.enemyBaseEntity = me.Entity.extend({
 	}
 
 });
+=======
+>>>>>>> 582bede42ca83d0f6c1a6887dff2d667812d28f7
