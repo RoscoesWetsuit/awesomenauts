@@ -55,8 +55,7 @@ game.PlayerEntity = me.Entity.extend({
 	}
 
 });
-<<<<<<< HEAD
-
+//setting the properties to the player's tower
 game.PlayerBaseEntity = me.Entity.extend({
 	init:function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
@@ -77,7 +76,7 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.type = "PlayerBaseEntity";
 
 	},
-
+	//basically if the tower's health is less then 0 then, its dead
 	update:function(){
 		if(this.health<=0) {
 			this.broken = true;
@@ -90,7 +89,8 @@ game.PlayerBaseEntity = me.Entity.extend({
 	}
 
 });
-
+//just copied and pasted the other but changed a couple
+//thingsto make the enemy tower
 game.enemyBaseEntity = me.Entity.extend({
 	init:function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
