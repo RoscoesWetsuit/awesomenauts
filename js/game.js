@@ -40,6 +40,8 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 	// Run on game resources loaded.
 	"loaded" : function () {
 		me.pool.register("player", game.PlayerEntity, true);
+		me.pool.register("", game.PlayerBaseEntity);
+		me.pool.register("", game.EnemyBaseEntity);
 		//added the player to the pool of objects we use, so the game
 		//can recognize the player
 		//we added the true, and what that does is it says any object
@@ -50,8 +52,7 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		// Start the game.
 		me.state.change(me.state.PLAY);
 	}
-<<<<<<< HEAD
+
 };
-=======
+
 };
->>>>>>> 582bede42ca83d0f6c1a6887dff2d667812d28f7
