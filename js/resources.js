@@ -34,4 +34,3 @@ game.resources = [
 	 */
 ];
 
-];
