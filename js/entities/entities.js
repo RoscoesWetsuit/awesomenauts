@@ -30,7 +30,7 @@ game.PlayerEntity = me.Entity.extend({
 
 
 	update: function(delta) {
-		
+		//keeps timer up to date
 		this.now = new Date().getTime();
 		if(me.input.isKeyPressed("right")) {
 //adds to the position of my x by the velocity defined above
@@ -107,13 +107,17 @@ game.PlayerEntity = me.Entity.extend({
 				this.pos.x = this.pos.x +1;
 				// cant walk into castle from left or right
 			}
-													
-													
+													//checks if it has been 400 milliseconds
+													//the player can attack again
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= 1000){
 				console.log("tower Hit");
+				//once it is done, it is gonna update the last hit variable so 
+				//player can attack again
 				this.lastHit = this.now;
 				response.b.losehealth();
-				
+				//function that makes the tower lose health
+				//if we are attacking or in contact with the base the tower will 
+				//lose health
 			}
 
 		}
