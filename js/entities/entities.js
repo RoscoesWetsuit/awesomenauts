@@ -72,14 +72,19 @@ game.PlayerBaseEntity = me.Entity.extend({
 		this.health = 10;
 		this.alwaysUpdate = true;
 		this.body.onCollision = this.onCollision.bind(this);
-
+		console.log("init");
 		this.type = "PlayerBaseEntity";
+		//we are setting animation for tower
+		this.renderable.addAnimation("idle", [0]);
+		this.renderable.addAnimation("borken", [1]);
+		this.renderable.setCurrentAnimation("idle");
 
 	},
 	//basically if the tower's health is less then 0 then, its dead
 	update:function(){
 		if(this.health<=0) {
 			this.broken = true;
+			this.renderable.setCurrentAnimation("broken");
 		}
 		this.body.update(delta);
 	},
@@ -109,12 +114,17 @@ game.enemyBaseEntity = me.Entity.extend({
 		this.body.onCollision = this.onCollision.bind(this);
 
 		this.type = "EnemybaseEntity";
+		//we are setting enemy tower animation
+		this.renderable.addAnimation("idle", [0]);
+		this.renderable.addAnimation("borken", [1]);
+		this.renderable.setCurrentAnimation("idle");
 
 	},
 
 	update:function(){
 		if(this.health<=0) {
 			this.broken = true;
+			this.renderable.setCurrentAnimation("broken");
 		}
 		this.body.update(delta);
 	},
@@ -124,5 +134,4 @@ game.enemyBaseEntity = me.Entity.extend({
 	}
 
 });
-=======
->>>>>>> 582bede42ca83d0f6c1a6887dff2d667812d28f7
+
