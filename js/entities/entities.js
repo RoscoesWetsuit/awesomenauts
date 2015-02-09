@@ -21,6 +21,7 @@ game.PlayerEntity = me.Entity.extend({
 
 		this.renderable.addAnimation("idle", [78]);
 		this.renderable.addAnimation("walk", [143, 144, 145, 146, 147, 148, 149, 150, 151], 80);
+		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72], 80)
 
 		this.renderable.setCurrentAnimation("idle");
 	},	
@@ -37,12 +38,40 @@ game.PlayerEntity = me.Entity.extend({
 			this.body.vel.x = 0;
 		}
 
-		if(this.body.vel.x !== 0) {
+		
+
+		if(me.input.isKeyPressed("attack")) {
+			if(!this.renderable.isCurrentAnimation("attack")) {
+				console.log(!this.renderable.isCurrentAnimation("attack"))
+				//sets the current animation to the attack and once that is over
+				//goes back to the idle animation
+				this.renderable.setCurrentAnimation("attack", "idle");
+				//makes it so that the nnect time we star this sequence we begin
+				//from the first animation, not wherevere we keft off when we
+				//switched to a another animation
+				this.renderable.setAnimationFrame();
+			}
+		}
+
+		else if(this.body.vel.x !== 0) {
 			if(!this.renderable.isCurrentAnimation("walk")) {
 				this.renderable.setCurrentAnimation("walk");
 			}
 		}else{
 			this.renderable.setCurrentAnimation("idle");
+		}
+
+		if(me.input.isKeyPressed("attack")) {
+			if(!this.renderable.isCurrentAnimation("attack")) {
+				console.log(!this.renderable.isCurrentAnimation("attack"))
+				//sets the current animation to the attack and once that is over
+				//goes back to the idle animation
+				this.renderable.setCurrentAnimation("attack", "idle");
+				//makes it so that the nnect time we star this sequence we begin
+				//from the first animation, not wherevere we keft off when we
+				//switched to a another animation
+				this.renderable.setAnimationFrame();
+			}
 		}
 
 
