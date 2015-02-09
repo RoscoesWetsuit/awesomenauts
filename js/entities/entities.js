@@ -1,8 +1,4 @@
-<<<<<<< HEAD
-=======
 
-
->>>>>>> 582bede42ca83d0f6c1a6887dff2d667812d28f7
 game.PlayerEntity = me.Entity.extend({
 	init:function(x, y, settings) {
 		this._super(me.Entity, 'init', [x, y, {
@@ -33,7 +29,10 @@ game.PlayerEntity = me.Entity.extend({
 //in setVelocity and by multiplying by me.timer.tick.
 //me.timer.tick makes the movement look smooth
 			this.body.vel.x += this.body.accel.x + me.timer.tick;
-			
+			this.flipX(true);
+		}else if(me.input.isKeyPressed("left")){
+			this.body.vel.x -=this.body.accel.x = me.time.tick
+			this.flipX(false);
 		}else{
 			this.body.vel.x = 0;
 		}
@@ -134,7 +133,7 @@ game.enemyBaseEntity = me.Entity.extend({
 			spritewidth: "100",
 			spriteheight: "100",
 			getShape: function(){
-				return (new me.rect(0, 0, 100)).toPolygon();
+				return (new me.rect(0, 0, 100, 70)).toPolygon();
 			}
 		}]);
 		this.broken = false;
