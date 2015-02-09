@@ -96,16 +96,21 @@ game.PlayerEntity = me.Entity.extend({
 
 			console.log("xdif " + xdif + " ydif " + ydif);
 
-			if (xdif>-20 && this.facing=== 'right' xdif<0) {
+			if(ydif<-40 && xdif< 70 && xdif>-35 ) {
+				this.body.falling = false;
+				this.body.vel.y = -1;
+			}
+
+			else if (xdif>-35 && this.facing=== 'right' && (xdif<0)){
 				this.body.vel.x = 0;
 				// stops the player from moving
-				this.pos.x = this.pos.x - 1;
+				this.pos.x = this.pos.x -1;
 				// slighty turns the character
 			}
-			else if (xdif<60 && this.facing=== 'left' && xdif>0) {
+			else if (xdif<70 && this.facing=== 'left' && xdif>0) {
 				this.body.vel.x = 0;
 				// stops the player from moving
-				this.pos.x = this.pos.x + 1;
+				this.pos.x = this.pos.x +1;
 				// cant walk into castle from left or right
 			}
 
