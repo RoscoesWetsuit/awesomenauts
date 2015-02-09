@@ -13,6 +13,7 @@ game.PlayerEntity = me.Entity.extend({
 		}]);
 
 		this.body.setVelocity(5, 20);
+		this.facing = "right";
 		//changes the characters Y position
 
 		this.renderable.addAnimation("idle", [78]);
@@ -29,12 +30,19 @@ game.PlayerEntity = me.Entity.extend({
 //in setVelocity and by multiplying by me.timer.tick.
 //me.timer.tick makes the movement look smooth
 			this.body.vel.x += this.body.accel.x + me.timer.tick;
+			this.facing = "right";
 			this.flipX(true);
 		}else if(me.input.isKeyPressed("left")){
+			this.facing = "left";
 			this.body.vel.x -=this.body.accel.x = me.time.tick
 			this.flipX(false);
 		}else{
 			this.body.vel.x = 0;
+		}
+
+		if(me.input.isKeyPressed("jump") && !this.body.jumping && !this.body.falling){
+			this.jumping = true;
+			this.body.vel.y -= this.body.accel.y * me.timer.tick;
 		}
 
 		
@@ -74,14 +82,36 @@ game.PlayerEntity = me.Entity.extend({
 		}
 
 
-
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
 		this.body.update(delta);
 		
 		this._super(me.Entity, "update", [delta]);
 		return true;
 
-	}
+	},
+	collideHandler: function(response) {
+		if(response.b.type==='EnemyBaseEntity'){
+			var ydif = this.pos.y - response.b.pos.y;
+			var xdif = this.pos.x - response.b.pos.x;
 
+			console.log("xdif " + xdif + " ydif " + ydif);
+
+			if (xdif>-20 && this.facing=== 'right' xdif<0) {
+				this.body.vel.x = 0;
+				// stops the player from moving
+				this.pos.x = this.pos.x - 1;
+				// slighty turns the character
+			}
+			else if (xdif<60 && this.facing=== 'left' && xdif>0) {
+				this.body.vel.x = 0;
+				// stops the player from moving
+				this.pos.x = this.pos.x + 1;
+				// cant walk into castle from left or right
+			}
+
+		}
+		// this is going to determine what happens when we hit the enemy entity
+	}
 });
 //setting the properties to the player's tower
 game.PlayerBaseEntity = me.Entity.extend({
