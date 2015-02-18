@@ -57,4 +57,3 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 
 };
 
-};
