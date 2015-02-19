@@ -28,6 +28,8 @@ game.PlayerEntity = me.Entity.extend ({
 		// keeps track of what time it is in the game
 		this.lastHit = this.now;
 		// keeps track of what time it is in the game basically doing the this.now variable
+		this.dead = false;
+		//declares that my player is alive not dead
 		this.lastAttack = new Date().getTime();
 		// this is stopping the attacks
 		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
@@ -44,6 +46,17 @@ game.PlayerEntity = me.Entity.extend ({
 
 	update: function(delta) {
 		this.now = new Date().getTime();
+
+		if (this.Health <= 0) {
+			//when player's health is equal to or less
+			//thn 0, this.dead = true declares that my player
+			//is dead. how dead? hella.
+			this.dead = true;
+			his.pos.x = 10;
+			this.pos.y = 0;
+			this.Health = game.data.playerHealth;
+		}
+
 		// this function is what happens on the fly
 		if(me.input.isKeyPressed("right")) {
 			// set the position of my x by adding the velocity to find above in set veloctiy 
@@ -126,13 +139,13 @@ game.PlayerEntity = me.Entity.extend ({
 			else if (xdif > -30 && this.facing === 'right' && (xdif < 0)) {
 				this.body.vel.x = 0;
 				// stops the player from moving
-				this.pos.x = this.pos.x - 1;
+				////this.pos.x = this.pos.x - 1;
 				// slighty turns the character
 			}
 			else if (xdif< 70 && this.facing === 'left' && xdif > 0) {
 				this.body.vel.x = 0;
 				// stops the player from moving
-				this.pos.x = this.pos.x + 1;
+				////this.pos.x = this.pos.x + 1;
 				// cant walk into castle from left or right
 			}
 			if(this.renderable.isCurrentAnimation("attack") && this.now-this.lastHit >= game.data.playerAttackTimer) {
@@ -148,14 +161,14 @@ game.PlayerEntity = me.Entity.extend ({
 			//this line of code keeps our player from walking
 			//right through our enemy
 			if (xdif>0){
-				this.pos.x = this.pos.x + 1;
+				////this.pos.x = this.pos.x + 1;
 				//this keeps track of where the player 
 				//is facing
 				if(this.facing==="left"){
 					this.body.vel.x = 0;
 				}
 			}else{
-				this.pos.x = this.pos.x - 1;
+				////this.pos.x = this.pos.x - 1;
 				if(this.facing==="right"){
 					this.body.vel.x = 0;
 				}
