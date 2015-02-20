@@ -9,6 +9,8 @@ game.PlayScreen = me.ScreenObject.extend({
 		me.levelDirector.loadLevel("level01");
 		//displays level
 
+		this.resetPlayer(0, 420);
+
 
 		
 		var gamemanager = me.pool.pull("GameManager", 0, 0, {});
@@ -16,7 +18,7 @@ game.PlayScreen = me.ScreenObject.extend({
 
 		me.input.bindKey(me.input.KEY.RIGHT, "right");
 		me.input.bindKey(me.input.KEY.LEFT, "left");
-		me.input.bindKey(me.input.KEY.SPACE, "jump");
+		me.input.bindKey(me.input.KEY.UP, "jump");
 		me.input.bindKey(me.input.KEY.A, "attack");
 
 		// add our HUD to the game world
@@ -34,8 +36,8 @@ game.PlayScreen = me.ScreenObject.extend({
 	},
 
 	resetPlayer: function(x, y){
-		var player = me.pool.pull("player", 0, 420, {});
-		me.game.world.addChild(player, 5);
+		game.data.player = me.pool.pull("player", 0, 420, {});
+		me.game.world.addChild(game.data.player, 5);
 
 	}
 

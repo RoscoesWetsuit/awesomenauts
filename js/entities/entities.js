@@ -52,9 +52,6 @@ game.PlayerEntity = me.Entity.extend ({
 			//thn 0, this.dead = true declares that my player
 			//is dead. how dead? hella.
 			this.dead = true;
-			his.pos.x = 10;
-			this.pos.y = 0;
-			this.Health = game.data.playerHealth;
 		}
 
 		// this function is what happens on the fly
@@ -313,7 +310,7 @@ game.EnemyCreep = me.Entity.extend({
 			}
 		}]);
 
-			this.health = gmae.data.enemyCreepHealth;
+			this.health = game.data.enemyCreepHealth;
 			this.alwaysUpdate = true;
 			// A timer for when attacking
 			this.now = new Date() .getTime();
@@ -398,7 +395,12 @@ game.GameManager = Object.extend({
 	update: function() {
 		 this.now = new Date().getTime();
 
-		 if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000) && xdif>0 ) {
+		 if(game.data.player.dead) {
+		 	me.game.world.removeChild(game.data.player);
+		 	me.state.current().resetPlayer(10, 0);
+		 }
+
+		 if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)) {
 		 	// checking to see if we have multiples of ten
 		 	// this.now - .. makes sure the spawn isnt repeating
 		 	this.lastCreep = this.now;
