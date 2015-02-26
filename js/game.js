@@ -5,27 +5,14 @@ var game = {
 	// an object where to store game information
 	data : {
 		// score
-		score : 0,
-		enemyBaseHealth: 10,
-		playerBaseHealth: 10,
-		enemyCreepHealth: 10,
-		playerHealth: 10,
-		enemyCreepAttack: 1,
-		playerAttack: 1,
-		playerAttackTimer: 1000,
-		creepAttckTimer: 1000,
-		playerMoveSpeed: 5,
-		creepMoveSpeed: 5,
-		GameManager: "",
-		player: "",
-
+		score : 0
 	},
 	
 	
 	// Run on page load.
 	"onload" : function () {
 	// Initialize the video.
-if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
+	if (!me.video.init("screen",  me.video.CANVAS, 480, 320, true, 'auto')) {
 		alert("Your browser does not support HTML5 canvas.");
 		return;
 	}
@@ -52,21 +39,10 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 
 	// Run on game resources loaded.
 	"loaded" : function () {
-		me.pool.register("player", game.PlayerEntity, true);
-		me.pool.register("PlayerBase", game.PlayerBaseEntity);
-		me.pool.register("EnemyBase", game.EnemyBaseEntity);
-		me.pool.register("EnemyCreep", game.EnemyCreep, true);
-		me.pool.register("GameManager", game.GameManager);
-		//added the player to the pool of objects we use, so the game
-		//can recognize the player
-		//we added the true, and what that does is it says any object
-		//that registers with true, is something i can make multiple instances of
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 
 		// Start the game.
-		me.state.change(me.state.MENU);
+		me.state.change(me.state.PLAY);
 	}
-
 };
-
