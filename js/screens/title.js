@@ -7,12 +7,13 @@ game.TitleScreen = me.ScreenObject.extend({
 		//shows title screen
 		me.input.bindKey(me.input.KEY.ENTER, "start");
 	
-		me.game.world.addChild(new (me.Renderable.extend(({
-			init: funciton() {
+		me.game.world.addChild(new (me.Renderable.extend({
+			init: function() {
 				this._super(me.Renderable, 'init', [510, 30, me.game.viewport.width, me.game.viewport.height])
+				// making a call to the super function
 				this.font = new me.Font("Arial", 46, "white");
-
-			},
+				// setting a font on the screen
+			}, 
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "Awesomenauts", 450, 130);
@@ -21,7 +22,7 @@ game.TitleScreen = me.ScreenObject.extend({
 			}
 		})));
 
-		this.handler = me.event.subscribe(me.event.KEYDOWN, function (action. keyCode, edge){
+		this.handler = me.event.subscribe(me.event.KEYDOWN, function(action, keyCode, edge){
 			if(action=== "start") {
 				me.state.change(me.state.PLAY);
 			}
