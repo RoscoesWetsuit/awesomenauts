@@ -59,6 +59,7 @@ game.PlayerEntity = me.Entity.extend ({
 		
 		this.dead = false;
 		//declares that my player is alive not dead
+		this.attacking = false;
 	},
 
 	addAnimation: function(){
@@ -73,12 +74,86 @@ game.PlayerEntity = me.Entity.extend ({
 
 	update: function(delta) {
 		this.now = new Date().getTime();
-
+		
 		this.dead = checkIfdead();
-
+		
 		this.checkKeyPressesAndMove();
+		
+		this.setAnimtation();
+		
+		me.collision.check(this, true, this.collideHandler.bind(this), true);
+		// passing a parameter into collide function
+		// delta is the change in time that has happens
+		
+		this.body.update(delta);
+		
+		this._super(me.Entity, "update", [delta]);
+		// this is updating the animations on the fly
+		return true;
+	},
 
-		if(me.input.isKeyPressed("attack")) {
+	checkIfdead: function(){
+		if (this.Health <= 0) {
+			//when player's health is equal to or less
+			//thn 0, this.dead = true declares that my player
+			//is dead. how dead? hella.
+			return true;
+		}
+		return false;
+	},
+
+	checkKeyPressesAndMove: function(){
+		if(me.input.isKeyPressed("right")) {
+			this.moveRight();
+		}else if(me.input.isKeyPressed("left")) {
+			this.MoveLeft();
+		}else{
+			this.body.vel.x = 0;
+		}
+
+		if (me.input.isKeyPressed('jump') && !this.body.jumping && !this.body.falling) {
+     	 // make sure we are not already jumping or falling
+      		this.jump();
+   		}
+
+   		this.attacking.me.input.isKeyPressed("attack");
+
+	},
+
+	jump: function(){
+		this.body.jumping = true;
+        // set current vel to the maximum defined value
+        // gravity will then do the rest
+        this.body.vel.y -= this.body.accel.y * me.timer.tick;
+    },
+
+	//im on mr.Lariimore's side with this 
+	moveRight: function(){
+		
+			// set the position of my x by adding the velocity to find above in set veloctiy 
+			// setVeloctiy() and multiplying it by timer.tick
+			// me.timer.tick makes the movement look smooth
+			this.facing = "right";
+			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.flipX(true);
+			// this is flipping the animation around
+
+		},
+
+	moveLeft: function(){
+
+			// set the position of my x by adding the velocity to find above in set veloctiy 
+			// setVeloctiy() and multiplying it by timer.tick
+			// me.timer.tick makes the movement look smooth
+			this.facing = "left";
+			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.flipX(false);
+			// this is flipping the animation around
+
+		},
+
+	setAnimtation: function(){
+		if(this.attacking) {
 			if (!this.renderable.isCurrentAnimation("attack")) {
 				// set current animation to attack and once that is over
 				// goes back to the idle animations
@@ -97,68 +172,6 @@ game.PlayerEntity = me.Entity.extend ({
 		}
 		else if(!this.renderable.isCurrentAnimation("attack")) {
 			this.renderable.setCurrentAnimation("idle");
-		}
-		me.collision.check(this, true, this.collideHandler.bind(this), true);
-		// passing a parameter into collide function
-		// delta is the change in time that has happens
-		this.body.update(delta);
-
-		this._super(me.Entity, "update", [delta]);
-		// this is updating the animations on the fly
-		return true;
-	},
-
-	checkIfdead: function(){
-		if (this.Health <= 0) {
-			//when player's health is equal to or less
-			//thn 0, this.dead = true declares that my player
-			//is dead. how dead? hella.
-			return true;
-		}
-		return false;
-	},
-
-	checkKeyPressesAndMove: function(){
-
-		else 
-		{
-			this.body.vel.x = 0;
-		}
-		if (me.input.isKeyPressed('jump') && !this.body.jumping && !this.body.falling) {
-     	 // make sure we are not already jumping or falling
-      		this.body.jumping = true;
-        // set current vel to the maximum defined value
-        // gravity will then do the rest
-        	this.body.vel.y -= this.body.accel.y * me.timer.tick;
-    }
-	},
-
-	//im on mr.Lariimore's side with this 
-	moveRight: function(){
-		// this function is what happens on the fly
-		if(me.input.isKeyPressed("right")) {
-			// set the position of my x by adding the velocity to find above in set veloctiy 
-			// setVeloctiy() and multiplying it by timer.tick
-			// me.timer.tick makes the movement look smooth
-			this.facing = "right";
-			this.body.vel.x += this.body.accel.x * me.timer.tick;
-			this.flipX(true);
-			// this is flipping the animation around
-
-		}
-	},
-
-	moveLeft: function(){
-
-		else if(me.input.isKeyPressed("left")) {
-			// set the position of my x by adding the velocity to find above in set veloctiy 
-			// setVeloctiy() and multiplying it by timer.tick
-			// me.timer.tick makes the movement look smooth
-			this.facing = "left";
-			this.body.vel.x -= this.body.accel.x * me.timer.tick;
-			this.flipX(false);
-			// this is flipping the animation around
-
 		}
 	},
 
