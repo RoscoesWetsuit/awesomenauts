@@ -74,45 +74,10 @@ game.PlayerEntity = me.Entity.extend ({
 	update: function(delta) {
 		this.now = new Date().getTime();
 
-		if (this.Health <= 0) {
-			//when player's health is equal to or less
-			//thn 0, this.dead = true declares that my player
-			//is dead. how dead? hella.
-			this.dead = true;
-		}
+		this.dead = checkIfdead();
 
-		// this function is what happens on the fly
-		if(me.input.isKeyPressed("right")) {
-			// set the position of my x by adding the velocity to find above in set veloctiy 
-			// setVeloctiy() and multiplying it by timer.tick
-			// me.timer.tick makes the movement look smooth
-			this.facing = "right";
-			this.body.vel.x += this.body.accel.x * me.timer.tick;
-			this.flipX(true);
-			// this is flipping the animation around
+		this.checkKeyPressesAndMove();
 
-		}
-		else if(me.input.isKeyPressed("left")) {
-			// set the position of my x by adding the velocity to find above in set veloctiy 
-			// setVeloctiy() and multiplying it by timer.tick
-			// me.timer.tick makes the movement look smooth
-			this.facing = "left";
-			this.body.vel.x -= this.body.accel.x * me.timer.tick;
-			this.flipX(false);
-			// this is flipping the animation around
-
-		}
-		else 
-		{
-			this.body.vel.x = 0;
-		}
-		if (me.input.isKeyPressed('jump') && !this.body.jumping && !this.body.falling) {
-     	 // make sure we are not already jumping or falling
-      		this.body.jumping = true;
-        // set current vel to the maximum defined value
-        // gravity will then do the rest
-        	this.body.vel.y -= this.body.accel.y * me.timer.tick;
-    }
 		if(me.input.isKeyPressed("attack")) {
 			if (!this.renderable.isCurrentAnimation("attack")) {
 				// set current animation to attack and once that is over
@@ -141,6 +106,60 @@ game.PlayerEntity = me.Entity.extend ({
 		this._super(me.Entity, "update", [delta]);
 		// this is updating the animations on the fly
 		return true;
+	},
+
+	checkIfdead: function(){
+		if (this.Health <= 0) {
+			//when player's health is equal to or less
+			//thn 0, this.dead = true declares that my player
+			//is dead. how dead? hella.
+			return true;
+		}
+		return false;
+	},
+
+	checkKeyPressesAndMove: function(){
+
+		else 
+		{
+			this.body.vel.x = 0;
+		}
+		if (me.input.isKeyPressed('jump') && !this.body.jumping && !this.body.falling) {
+     	 // make sure we are not already jumping or falling
+      		this.body.jumping = true;
+        // set current vel to the maximum defined value
+        // gravity will then do the rest
+        	this.body.vel.y -= this.body.accel.y * me.timer.tick;
+    }
+	},
+
+	//im on mr.Lariimore's side with this 
+	moveRight: function(){
+		// this function is what happens on the fly
+		if(me.input.isKeyPressed("right")) {
+			// set the position of my x by adding the velocity to find above in set veloctiy 
+			// setVeloctiy() and multiplying it by timer.tick
+			// me.timer.tick makes the movement look smooth
+			this.facing = "right";
+			this.body.vel.x += this.body.accel.x * me.timer.tick;
+			this.flipX(true);
+			// this is flipping the animation around
+
+		}
+	},
+
+	moveLeft: function(){
+
+		else if(me.input.isKeyPressed("left")) {
+			// set the position of my x by adding the velocity to find above in set veloctiy 
+			// setVeloctiy() and multiplying it by timer.tick
+			// me.timer.tick makes the movement look smooth
+			this.facing = "left";
+			this.body.vel.x -= this.body.accel.x * me.timer.tick;
+			this.flipX(false);
+			// this is flipping the animation around
+
+		}
 	},
 
 	looseHealth: function(damage){
