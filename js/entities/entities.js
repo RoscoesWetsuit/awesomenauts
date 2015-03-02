@@ -18,7 +18,7 @@ game.PlayerEntity = me.Entity.extend ({
 		this.renderable.setCurrentAnimation("idle");
 	}, 
 
-	setSuper: function(){
+	setSuper: function(x, y){
 		// melon js uses this constructor on most things to help us set up
 		this._super(me.Entity, 'init', [x, y, {
 			// this means reaching to the constructor of entites
@@ -69,13 +69,13 @@ game.PlayerEntity = me.Entity.extend ({
 		// this is going to be what the cahracter is going to change into
 		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72] , 80);
 
-	}
+	},
 
 
 	update: function(delta) {
 		this.now = new Date().getTime();
 		
-		this.dead = checkIfdead();
+		this.dead = this.checkIfDead();
 		
 		this.checkKeyPressesAndMove();
 		
@@ -92,7 +92,7 @@ game.PlayerEntity = me.Entity.extend ({
 		return true;
 	},
 
-	checkIfdead: function(){
+	checkIfDead: function(){
 		if (this.Health <= 0) {
 			//when player's health is equal to or less
 			//thn 0, this.dead = true declares that my player
