@@ -1,8 +1,26 @@
 game.PlayerEntity = me.Entity.extend ({
 	// this is a class
 	init: function(x, y, settings) {
+		this.setSuper();
+		this.setPlayerTimers();
+		this.setAttributes();
+		this.type = "PlayerEntity";
+		this.setFlags();
+		
+		
+		
+		// this is stopping the attacks
+		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
+		// this says wherever the player goes the screen will follow him
+
+		this.addAnimation();
+
+		this.renderable.setCurrentAnimation("idle");
+	}, 
+
+	setSuper: function(){
 		// melon js uses this constructor on most things to help us set up
-		this._super(me.Entity, "init", [x, y, {
+		this._super(me.Entity, 'init', [x, y, {
 			// this means reaching to the constructor of entites
 			image: "player",
 			width: 64,
@@ -17,33 +35,41 @@ game.PlayerEntity = me.Entity.extend ({
 				// rect is what the guy can walk in to
 			}
 		}]);
-		this.type = "PlayerEntity";
-		this.health = game.data.playerHealth;
-		this.body.setVelocity(game.data.playerMoveSpeed, 20);
-		// this also changes the y velocity of the character
-		// this is the movement speed of the character
-		this.facing = "right";		
-		// keeps track of which direction the character is going
+	},
+
+	setPlayerTimers: function(){
 		this.now = new Date().getTime();
 		// keeps track of what time it is in the game
 		this.lastHit = this.now;
 		// keeps track of what time it is in the game basically doing the this.now variable
+		this.lastAttack = new Date().getTime();	
+	},
+
+	setAttributes: function(){
+		this.health = game.data.playerHealth;
+		this.body.setVelocity(game.data.playerMoveSpeed, 20);
+		this.attack = game.data.playerAttack
+	},
+
+	setFlags: function(){
+				// this also changes the y velocity of the character
+		// this is the movement speed of the character
+		this.facing = "right";		
+		// keeps track of which direction the character is going
+		
 		this.dead = false;
 		//declares that my player is alive not dead
-		this.attack = game.data.playerAttack
-		this.lastAttack = new Date().getTime();
-		// this is stopping the attacks
-		me.game.viewport.follow(this.pos, me.game.viewport.AXIS.BOTH);
-		// this says wherever the player goes the screen will follow him
+	},
 
+	addAnimation: function(){
 		this.renderable.addAnimation("idle", [78]);
 		// when the character is still this is what he will look like
 		this.renderable.addAnimation("walk", [117, 118, 119, 120, 121, 122, 123, 124, 125], 80);
 		// this is going to be what the cahracter is going to change into
-
-		this.renderable.setCurrentAnimation("idle");
 		this.renderable.addAnimation("attack", [65, 66, 67, 68, 69, 70, 71, 72] , 80);
-	}, 
+
+	}
+
 
 	update: function(delta) {
 		this.now = new Date().getTime();
