@@ -62,7 +62,8 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		me.pool.register("PlayerBase", game.PlayerBaseEntity);
 		me.pool.register("EnemyBase", game.EnemyBaseEntity);
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
-		me.pool.register("GameManager", game.GameManager);
+		me.pool.register("GameTimerManager", game.GameManager);
+		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		//added the player to the pool of objects we use, so the game
 		//can recognize the player
 		//we added the true, and what that does is it says any object
