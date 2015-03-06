@@ -16,7 +16,8 @@ var game = {
 		creepAttckTimer: 1000,
 		playerMoveSpeed: 5,
 		creepMoveSpeed: 5,
-		GameManager: "",
+		GameTimerManager: "",
+		HeroDeathManager: "",
 		player: "",
 		exp: 0,
 		gold: 0,
@@ -24,6 +25,8 @@ var game = {
 		exp2: 0,
 		exp3: 0,
 		exp4: 0,
+		win: "",
+		
 
 	},
 	
@@ -64,6 +67,7 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		me.pool.register("EnemyCreep", game.EnemyCreep, true);
 		me.pool.register("GameTimerManager", game.GameManager);
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
+		me.pool.register("ExperienceMAnager", game.ExperienceManager);
 		//added the player to the pool of objects we use, so the game
 		//can recognize the player
 		//we added the true, and what that does is it says any object
