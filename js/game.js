@@ -46,6 +46,8 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		});
 	}
 
+	me.save.add((exp: 0, exp1: 0, exp3: 0, exp4: 0));
+
 	// Initialize the audio.
 	me.audio.init("mp3,ogg");
 
