@@ -65,13 +65,13 @@ game.HeroDeathManage = Object.extend({
 game.experienceManager = Object.extend({
 	init: function(x, y, settings){
 		this.alwaysUpdate = true;
-		this.gameOver = false;
+		this.gamoever = false;
 	},
 
 	update: function(){
-		if(game.data.win === true && !this.gameOver){
+		if(game.data.win === true && !this.gameover){
 			this.gameOver(true);
-		}else if(game.data.win === false && !this.gameOver){
+		}else if(game.data.win === false && !this.gameover){
 			this.gameOver(false);
 		}
 		
@@ -86,7 +86,9 @@ game.experienceManager = Object.extend({
 			game.data.exp += 1;
 		}
 
-		this.gameOver = true;
-		me.save.exp = game.data.exp
+		this.gameover = true;
+		me.save.exp = game.data.exp;
+		//for testing purposes only
+		me.save.exp2 = 4;
 	}
 })
