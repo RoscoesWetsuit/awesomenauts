@@ -11,8 +11,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				// making a call to the super function
 				this.font = new me.Font("Arial", 46, "white");
 				// setting a font on the screen
-				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true)
-				),
+				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true);
 				//its waiting for the mouse to be clicked down		//when mouse is clicked we call that new game function 	
 			}, 
 
@@ -30,7 +29,7 @@ return true;
 				me.save.remove('exp2');
 				me.save.remove('exp3');
 				me.save.remove('exp4');
-				me.stat.change(me.state.PLAY);
+				me.state.change(me.state.PLAY);
 			}
 		})));
 
@@ -41,9 +40,8 @@ return true;
 				this.font = new me.Font("Arial", 46, "white");
 				// setting a font on the screen
 				me.input.registerPointerEvent('pointerdown', this, this.newGame.bind(this), true)
-				),
+				},
 				//its waiting for the mouse to be clicked down		//when mouse is clicked we call that new game function 	
-			}, 
 
 			draw: function(renderer) {
 				this.font.draw(renderer.getContext(), "CONTINUE", this.pos.x, this.pos.y);
@@ -62,7 +60,7 @@ return true;
 				game.data.exp4 = me.save.exp4;
 
 				me.input.releasePointerEvent('pointerdown', this);
-				me.stat.change(me.state.PLAY);
+				me.state.change(me.state.SPENDEXP);
 			}
 		})));		
 

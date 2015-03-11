@@ -11,7 +11,7 @@ game.GameTimerManager = Object.extend({
 	update: function() {
 		 this.now = new Date().getTime();
 		 this.goldTimerCheck();
-		 this.creepTimerCheck
+		 this.creepTimerCheck();
 
 		 if(Math.round(this.now/1000)%10 ===0 && (this.now - this.lastCreep >= 1000)) {
 		 	// checking to see if we have multiples of ten
@@ -47,14 +47,14 @@ game.GameTimerManager = Object.extend({
 
 
 
-game.HeroDeathManage = Object.extend({
+game.HeroDeathManager = Object.extend({
 	init: function(x, y, settings){
 		this.alwaysUpdate = true;
 	},
 
 	update: function(){
-		if(gmae.data.plaer.dead){
-			me.game.world.removeChild(gmae.data.player);
+		if(game.data.player.dead){
+			me.game.world.removeChild(game.data.player);
 			me.state.current().resetPlayer(10, 0);
 		}
 	},
@@ -62,10 +62,10 @@ game.HeroDeathManage = Object.extend({
 
 
 
-game.experienceManager = Object.extend({
+game.ExperienceManager = Object.extend({
 	init: function(x, y, settings){
 		this.alwaysUpdate = true;
-		this.gamoever = false;
+		this.gameover = false;
 	},
 
 	update: function(){
@@ -79,7 +79,7 @@ game.experienceManager = Object.extend({
 		return true;
 	},
 
-	gameOver: function(){
+	gameOver: function(win){
 		if(win){
 			game.data.exp += 10;
 		}else{

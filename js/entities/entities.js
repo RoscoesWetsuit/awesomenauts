@@ -105,9 +105,13 @@ game.PlayerEntity = me.Entity.extend ({
 	checkKeyPressesAndMove: function(){
 		if(me.input.isKeyPressed("right")) {
 			this.moveRight();
-		}else if(me.input.isKeyPressed("left")) {
-			this.MoveLeft();
-		}else{
+		}
+
+		else if(me.input.isKeyPressed("left")) {
+			this.moveLeft();
+		}
+
+		else{
 			this.body.vel.x = 0;
 		}
 
@@ -116,7 +120,7 @@ game.PlayerEntity = me.Entity.extend ({
       		this.jump();
    		}
 
-   		this.attacking.me.input.isKeyPressed("attack");
+   		this.attacking = me.input.isKeyPressed("attack");
 
 	},
 
