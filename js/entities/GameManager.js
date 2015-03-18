@@ -89,4 +89,18 @@ game.ExperienceManager = Object.extend({
 		this.gameover = true;
 		me.save.exp = game.data.exp;
 	}
+});
+
+game.SpendGold = Object,extend({
+	init: function(x, y, settings){
+		this.now = new Date().getTime();
+		this.lastBuy = new Date()
+		this.paused = false;.getTime();
+		this.alwaysUpdate = true;
+	},
+
+	update: function(){
+
+	}
+
 })

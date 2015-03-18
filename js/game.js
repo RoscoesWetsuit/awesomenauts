@@ -26,6 +26,9 @@ var game = {
 		exp3: 0,
 		exp4: 0,
 		win: "",
+		pausePos:"";
+		buyscreen:"";
+
 		
 
 	},
@@ -73,6 +76,7 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		me.pool.register("ExperienceMAnager", game.ExperienceManager);
+		me.pool.register("SpendGold", game,SpendGold);
 		//added the player to the pool of objects we use, so the game
 		//can recognize the player
 		//we added the true, and what that does is it says any object
