@@ -91,11 +91,11 @@ game.ExperienceManager = Object.extend({
 	}
 });
 
-game.SpendGold = Object,extend({
+game.SpendGold = Object.extend({
 	init: function(x, y, settings){
 		this.now = new Date().getTime();
 		this.lastBuy = new Date()
-		this.paused = false;.getTime();
+		this.pause = false;
 		this.alwaysUpdate = true;
 		this.updateWhenPaused = true;
 		this.buying = false;
@@ -145,7 +145,13 @@ game.SpendGold = Object,extend({
 			}, 
 
 			draw: function(renderer) {
-				this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT", this.pos.x, this.pos.y);
+				this.font.draw(renderer.getContext(), "PRESS F1-F6 TO BUY, B TO EXIT. Current Gold: " + game.data.gold, this.pos.x, this.pos.y);
+				this.font.draw(renderer.getContext(), "skill 1: increase damage. Current Level: " + game.data.skill1 + " cost: " + ((game.data.skill1+1)*10), this.pos.x, this.pos.y + 40);
+				this.font.draw(renderer.getContext(), "skill 2: run faster! current level: " + game.data.skill2 + " cost: " + ((game.data.skill2+1)*10), this.pos.x, this.pos.y + 80);
+				this.font.draw(renderer.getContext(), "skill 3: increase health. current level: " + game.data.skill3 + " cost: " + ((game.data.skill3+1)*10), this.pos.x, this.pos.y + 120);
+				this.font.draw(renderer.getContext(), "Q ability: sanic burst. current level: "  + game.data.ability1 + " cost: " + ((game.data.ability1+1)*10), this.pos.x, this.pos.y + 160);
+				this.font.draw(renderer.getContext(), "W ability: beneficial cannibalism. current level: " + game.data.ability2 + " cost: " + ((game.data.ability2+1)*10), this.pos.x, this.pos.y + 200);
+				this.font.draw(renderer.getContext(), "E ability: YEET! current level: " + game.data.ability3 + " cost: " + ((game.data.ability3+1)*10), this.pos.x, this.pos.y + 240);
 
 			},
 
