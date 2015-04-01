@@ -58,6 +58,8 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 	me.save.add({exp: 0, exp1: 0, exp3: 0, exp4: 0});
 
 	me.state.SPENDEXP = 112;
+	me.state.LOAD= 112;
+	me.state.LOAD = 112;
 
 
 	// Initialize the audio.
@@ -90,6 +92,8 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		me.state.set(me.state.MENU, new game.TitleScreen());
 		me.state.set(me.state.PLAY, new game.PlayScreen());
 		me.state.set(me.state.SPENDEXP, new game.SpendExp());
+		me.state.set(me.state.LOAD, new game.loadProfile());
+		me.state.set(me.state.SPENDEXP, new game.newProfile());
 
 		// Start the game.
 		me.state.change(me.state.MENU);
