@@ -25,7 +25,7 @@ var game = {
 		ability2: 0,
 		ability3: 0,
 		skill1: 0,
-		skill2
+		skill2: 0,
 		exp1: 0,
 		exp2: 0,
 		exp3: 0,
@@ -55,8 +55,6 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		});
 	}
 
-	me.save.add({exp: 0, exp1: 0, exp3: 0, exp4: 0});
-
 	me.state.SPENDEXP = 112;
 	me.state.LOAD= 112;
 	me.state.LOAD = 112;
@@ -84,7 +82,7 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		me.pool.register("GameTimerManager", game.GameTimerManager);
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		me.pool.register("ExperienceMAnager", game.ExperienceManager);
-		me.pool.register("SpendGold", game,SpendGold);
+		me.pool.register("SpendGold", game.SpendGold);
 		//added the player to the pool of objects we use, so the game
 		//can recognize the player
 		//we added the true, and what that does is it says any object

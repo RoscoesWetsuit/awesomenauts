@@ -16,6 +16,24 @@
 		<!-- Canvas placeholder -->
 		<div id="screen"></div>
 
+		<form id="input" method="post">
+			<div class="field">
+				<label for="username">
+				<input type='text' name='username' id='username' autocomplete='off'>
+			</div>
+
+			<div class='password'>
+				<label for='password'>password</label>
+				<input type='text' name='password' id='password'>
+			</div>
+
+			<button type='button' id='register'>register</button>
+			<button type='button' id='load'>Load</button>
+			<button type='button' id='mainmenu'>MainMenu</button>
+
+
+		</form>
+
 		<!-- melonJS Library -->
 		<!-- build:js js/app.min.js -->
 		<script type="text/javascript" src="lib/melonJS-1.1.0-min.js"></script>
@@ -31,10 +49,10 @@
 		<script type="text/javascript" src="js/entities/PlayerBaseEntity.js"></script>
 		<script type="text/javascript" src="js/entities/EnemyBaseEntity.js"></script>
 		<script type="text/javascript" src="js/entities/EnemyCreep.js"></script>
-		<script type="text/javascript" src="js/GameManagers/GameManager.js"></script>
-		<script type="text/javascript" src="js/GameManagers/GameTimerManager.js"></script>
-		<script type="text/javascript" src="js/entities/SpendGold.js"></script>
-		<script type="text/javascript" src="js/entities/HeroDeathManager.js"></script>
+		<script type="text/javascript" src="js/entities/GameManagers/GameManager.js"></script>
+		<script type="text/javascript" src="js/entities/GameManagers/GameTimerManager.js"></script>
+		<script type="text/javascript" src="js/entities/GameManagers/SpendGold.js"></script>
+		<script type="text/javascript" src="js/entities/GameManagers/HeroDeathManager.js"></script>
 		<script type="text/javascript" src="js/entities/EnemyCreep.js"></script>								
 		<script type="text/javascript" src="js/entities/HUD.js"></script>
 
