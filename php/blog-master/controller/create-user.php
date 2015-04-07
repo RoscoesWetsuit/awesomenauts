@@ -24,5 +24,6 @@
 	if($query) {
 		//need this for Ajax on index.php
 		echo "true";
+	}else{
+		echo "<p>" . $_SESSION["connection"]->error . "</p>";
 	}
-	else "<p>" . $_SESSION["connection"]->error . "</p>";
