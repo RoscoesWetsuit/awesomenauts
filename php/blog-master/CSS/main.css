@@ -1,0 +1,46 @@
+/* Smartphones (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 320px) and (max-device-width : 480px) {
+/* Styles */
+html {
+	background-color: lime;
+}
+}
+
+/* iPads (portrait and landscape) ----------- */
+@media only screen and (min-device-width : 768px) and (max-device-width : 1024px) {
+/* Styles */
+ html {
+ 	background-color: orange;
+ }
+}
+
+h1.register {
+	text-align: center;
+}
+
+input.form-control {
+	text-align: center;
+	width: 300px;
+}
+
+div.email {
+	position: relative;
+	left: 530px;
+}
+
+div.username {
+	position: relative;
+	left: 530px;
+}
+
+div.password {
+	position: relative;
+	left: 530px;
+}
+
+input[type=submit] {padding:5px 15px; background:#ccc; border:0 none;
+cursor:pointer;
+-webkit-border-radius: 5px;
+border-radius: 5px;
+position: relative;
+left: 645px; }
