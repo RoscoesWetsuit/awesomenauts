@@ -42,6 +42,9 @@ game.PlayerEntity = me.Entity.extend ({
 		// keeps track of what time it is in the game
 		this.lastHit = this.now;
 		// keeps track of what time it is in the game basically doing the this.now variable
+		
+		this.lastSpear = this.now;
+
 		this.lastAttack = new Date().getTime();	
 	},
 
@@ -78,6 +81,8 @@ game.PlayerEntity = me.Entity.extend ({
 		this.dead = this.checkIfDead();
 		
 		this.checkKeyPressesAndMove();
+
+		this.checkAbilityKeys();
 		
 		this.setAnimtation();
 		
@@ -124,14 +129,7 @@ game.PlayerEntity = me.Entity.extend ({
 
 	},
 
-	jump: function(){
-		this.body.jumping = true;
-        // set current vel to the maximum defined value
-        // gravity will then do the rest
-        this.body.vel.y -= this.body.accel.y * me.timer.tick;
-    },
-
-	//im on mr.Lariimore's side with this 
+ 
 	moveRight: function(){
 		
 			// set the position of my x by adding the velocity to find above in set veloctiy 
@@ -142,7 +140,7 @@ game.PlayerEntity = me.Entity.extend ({
 			this.flipX(true);
 			// this is flipping the animation around
 
-		},
+	},
 
 	moveLeft: function(){
 
@@ -154,7 +152,33 @@ game.PlayerEntity = me.Entity.extend ({
 			this.flipX(false);
 			// this is flipping the animation around
 
-		},
+	},
+
+	jump: function(){
+		this.body.jumping = true;
+        // set current vel to the maximum defined value
+        // gravity will then do the rest
+        this.body.vel.y -= this.body.accel.y * me.timer.tick;
+    
+    },
+
+    checkAbilityKeys: function(){
+    	if(me.input.ifKeyPressed("skill1")){
+
+    	}else if(me.input.ifKeyPressed("skill2")){
+
+    	}else if(me.input.ifKeyPressed("skill3")){
+    		this.throwSpear();
+    	}
+    },
+
+    throwSpear: function(){
+    	if(this.lastSpear >= gmae.data.spearTimer && game.data.ability3 >= 0){
+    		this.lastSpear = this.now;
+		 	var Spear = me.pool.pull("spear", this.pos.x, this.pos.y, {});
+		 	me.game.world.addChild(spear, 10);
+		 }
+    },
 
 	setAnimtation: function(){
 		if(this.attacking) {
