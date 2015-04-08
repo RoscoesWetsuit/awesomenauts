@@ -5,7 +5,7 @@ game.TitleScreen = me.ScreenObject.extend({
 	onResetEvent: function() {	
 		me.game.world.addChild(new me.Sprite(0, 0, me.loader.getImage('title-screen')), -10); // TODO
 	
-		me.game.world.addChild(new (me.Renderable.extend({
+		game.data.option = new (me.Renderable.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [270, 240, 300, 50]);
 				// making a call to the super function
@@ -24,13 +24,16 @@ game.TitleScreen = me.ScreenObject.extend({
 			},
 
 			newGame: function(){
-				me.input.releasePointerEvent('pointerdown', this);
+				me.input.releasePointerEvent('pointerdown', game.data.option);
 				me.save.add({exp: 0, exp1: 0, exp3: 0, exp4: 0});
 				me.state.change(me.state.PLAY);
 			}
 		})));
 
-		me.game.world.addChild(new (me.Renderable.extend({
+		
+		me.game.world.addchild(game.data.option)
+
+		game.data.option2 = new (me.Renderable.extend({
 			init: function() {
 				this._super(me.Renderable, 'init', [380, 340, 250, 50]);
 				// making a call to the super function
@@ -51,11 +54,14 @@ game.TitleScreen = me.ScreenObject.extend({
 
 			newGame: function(){
 
-				me.input.releasePointerEvent('pointerdown', this);
+				me.input.releasePointerEvent('pointerdown', game.data.option2);
 				me.state.change(me.state.load);
 				me.state.change(me.state.NEW);
 			}
-		})));		
+		})));	
+
+
+		me.game.world.addChild(game.data.option2)	
 
 
 
