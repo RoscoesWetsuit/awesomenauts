@@ -1,6 +1,7 @@
 <?php
 	require_once(__DIR__ . "/../model/config.php");
 
+	$email = filter_input(INPUT_POST, "email", FILTER_SANITIZE_EMAIL);
 	$username = filter_input(INPUT_POST, "username", FILTER_SANITIZE_STRING);
 	$password = filter_input(INPUT_POST, "password", FILTER_SANITIZE_STRING);
 
@@ -9,21 +10,12 @@
 	$hashedPassword = crypt($password, $salt);
 
 	$query = $_SESSION["connection"]->query("INSERT INTQ users SET"
-		. "email = '',"
+		. "email = '$email',"
 		. "username = '$username',"
 		. "password = '$hashedPassword',"
-		. "salt = '$salt',"
-		. "exp = 0, "
-		. "exp1 = 0, "
-		. "exp2 = 0, "
-		. "exp3 = 0, "
-		. "exp4 = 0, ");
-
-	$_SESSION["name"] = $username;
+		. "salt = '$salt'");
 
 	if($query) {
-		//need this for Ajax on index.php
-		echo "true";
-	}else{
-		echo "<p>" . $_SESSION["connection"]->error . "</p>";
+		echo "Successfully created user: $username";
 	}
+	else "<p>" . $_SESSION["connection"]->error . "</p>";

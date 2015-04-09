@@ -5,11 +5,11 @@ session_start();
 //maintains the same session id
 session_regenerate_id(true);
 
-$path = "/awesomenauts/php/";
+$path = "/blog/";
 
 $host = "localhost";
 $username = "root";
-$database = "awesomenauts_db";
+$database = "blog_db";
 $password = "root";
 if(!isset($_SESSION["connection"])) {
 	//gonna help me query on the database

@@ -28,7 +28,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.save.add({exp: 0, exp1: 0, exp3: 0, exp4: 0});
 				me.state.change(me.state.PLAY);
 			}
-		})));
+		}));
 
 		
 		me.game.world.addchild(game.data.option)
@@ -58,7 +58,7 @@ game.TitleScreen = me.ScreenObject.extend({
 				me.state.change(me.state.load);
 				me.state.change(me.state.NEW);
 			}
-		})));	
+		}));	
 
 
 		me.game.world.addChild(game.data.option2)	
