@@ -37,6 +37,7 @@ var game = {
 		pausePos: "",
 		buyscreen: "",
 		buytext: "",
+		minimap: ""
 
 		
 
@@ -86,7 +87,8 @@ if (!me.video.init("screen",  me.video.CANVAS, 1067, 600, true, '1.0')) {
 		me.pool.register("HeroDeathManager", game.HeroDeathManager);
 		me.pool.register("ExperienceMAnager", game.ExperienceManager);
 		me.pool.register("SpendGold", game.SpendGold);
-		me.pool.register("spear", game.SpearThrow);
+		me.pool.register("spear", game.SpearThrow, true);
+		me.pool.register("minimap", game.MiniMap, true);
 		//added the player to the pool of objects we use, so the game
 		//can recognize the player
 		//we added the true, and what that does is it says any object
